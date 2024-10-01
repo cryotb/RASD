@@ -3,6 +3,30 @@ Parts of this project have been reverse engineered and reconstructed from R5AC, 
 - call into monitored function from legitimate place (e.g from within the main executable)
 - call into monitored function from code residing in a manually allocated RWX page.
 - call into monitored function with 2 open-source return address spoofers. (gadgets used: jmp, add rsp; ret)
+
+# Sample Output
+Make sure to compile in x64 Release!
+```
+------( trying to call from process itself... )------
+<<EXTRA>> [INFO] CALLED BY 'r5sw.exe'+0xced5
+-----------------------------------------------------
+------( trying to call from RWX page... )------
+<<EXTRA>> [FLAG//////UNBACKED CODE EXECUTION(PRIMARY)] caller is originated within non-module memory.
+<<EXTRA>> [INFO] CALLED BY 'UNK_f0d97f790'
+[FLAG//////UNBACKED CODE EXECUTION(SECONDARY)] suspicious record at 0 (0000017ACA4D0017)
+-----------------------------------------------------
+------( trying to call with spoof (namazso): )------
+<<EXTRA>> [INFO] CALLED BY 'r5sw.exe'+0x1000
+[FLAG//////RETADDR SPOOFER] suspicious record at 0 (00007FF642DC1000)
+-----------------------------------------------------
+------( trying to call with spoof (beakers): )------
+<<EXTRA>> [INFO] CALLED BY 'kernel32.dll'+0x66cfa
+[FLAG//////RETADDR SPOOFER] suspicious record at 0 (00007FF8DD396CFA)
+[FLAG//////RETADDR SPOOFER] suspicious record at 2 (00007FF8DD345FB6)
+[FLAG//////RETADDR SPOOFER] suspicious record at 3 (00007FF642DCD1AB)
+-----------------------------------------------------
+```
+
 # How does it work?
 Currently they use an API for generating a backtrace recording. It's located in `kernel32.dll` and named `RtlCaptureStackBackTrace`.
 These checks are riddled around the game's normal code and you will eventually call into them. 
