@@ -12,14 +12,12 @@ extern "C" std::uintptr_t * proxy_call_fakestack;
 	return reinterpret_cast< return_type (__cdecl* )(__VA_ARGS__, std::uint64_t,void*) >( proxy_call_stub )( std::forward<Args>( args )..., 0x21376969,fn );                                     \
 }
 
-std::uint64_t spoof_call_test(std::uint64_t x, std::uint64_t x2, std::uint64_t x3, std::uint64_t x4, std::uint64_t x5, std::uint64_t x6)
+inline std::uint64_t spoof_call_test(std::uint64_t x, std::uint64_t x2, std::uint64_t x3, std::uint64_t x4, std::uint64_t x5, std::uint64_t x6)
 {
 	return x + x2 + x3 + x4 + x5 + x6;
 }
 
-SPOOF_CALL_METHOD(protected_func, do_spoof_call_test, std::uint64_t, std::uint64_t, std::uint64_t, std::uint64_t, std::uint64_t, std::uint64_t, std::uint64_t)
-
-void prepare_proxy_for_module(std::uint8_t* module, std::uint32_t max_fakestack = 12)
+inline void prepare_proxy_for_module(std::uint8_t* module, std::uint32_t max_fakestack = 12)
 {
 	std::map<std::int8_t, std::vector<std::uintptr_t>> proxy_clean_returns;
 

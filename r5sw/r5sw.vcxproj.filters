@@ -18,6 +18,12 @@
     <ClCompile Include="r5sw.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="tools.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="protected.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="spoofers\namazso\namazso.h">
@@ -26,10 +32,13 @@
     <ClInclude Include="spoofers\beakers\beakers.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="tools.h">
+    <ClInclude Include="inc\tools.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="defs.h">
+    <ClInclude Include="inc\defs.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\include.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
