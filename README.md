@@ -11,6 +11,16 @@ If your cheat generates a CALL instruction on anything that later on may land in
 
 You should always keep in mind that it's not hard for an anticheat to detect an anomaly here, if you add the fact that all of this comes from a module that isn't even in LDR nor signed/in a whitelist, then you definitely know something's up.
 
+# Which gadgets does it detect?
+It pretty much detects certain variations of gadgets commonly used when doing anything with return address spoofing, i have included 2 open-source projects to demonstrate the detection:
+1. https://www.unknowncheats.me/forum/anti-cheat-bypass/268039-x64-return-address-spoofing-source-explanation.html
+2. https://www.unknowncheats.me/forum/anti-cheat-bypass/512002-x64-return-address-spoofing.html
+3. https://github.com/Peribunt/Exception-Ret-Spoofing/
+
+All credits for these go to the corresponding authors. They are just being shipped for demonstration purposes.
+
+
+
 # What's interesting about it?
 Currently, they use following logic for what i assume, is for detecting gadgets commonly used for this purpose:
 
@@ -32,12 +42,3 @@ Currently, they use following logic for what i assume, is for detecting gadgets 
             }
 ```
 They seem to use this generic algorithm for detecting a range of gadgets. Further analysis is to be done on it.
-
-# Which gadgets does it detect?
-It pretty much detects certain variations of gadgets commonly used when doing anything with return address spoofing, i have included 2 open-source projects to demonstrate the detection:
-1. https://www.unknowncheats.me/forum/anti-cheat-bypass/268039-x64-return-address-spoofing-source-explanation.html
-2. https://www.unknowncheats.me/forum/anti-cheat-bypass/512002-x64-return-address-spoofing.html
-3. https://github.com/Peribunt/Exception-Ret-Spoofing/
-
-All credits for these go to the corresponding authors. They are just being shipped for demonstration purposes.
-
