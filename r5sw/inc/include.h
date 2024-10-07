@@ -15,5 +15,6 @@
 
 extern void protected_func();
 
-#include "spoofers/namazso/namazso.h"
-#include "spoofers/beakers/beakers.h"
+#include "../spoofers/namazso/namazso.h"
+#include "../spoofers/beakers/beakers.h"
+#include "../spoofers/reap/reap.h"

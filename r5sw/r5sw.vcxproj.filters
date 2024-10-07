@@ -24,6 +24,9 @@
     <ClCompile Include="protected.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="spoofers\reap\reap.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="spoofers\namazso\namazso.h">
@@ -39,6 +42,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="inc\include.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="spoofers\reap\reap.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

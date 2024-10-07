@@ -22,6 +22,10 @@ namespace tests
         prepare_proxy_for_module((std::uint8_t*)LoadLibraryA("kernel32.dll"));
         do_spoof_call_test(0, 0, 0, 0, 0, 0);
         printf("-----------------------------------------------------\n");
+
+        printf("------( trying to call with spoof (ReaP): )------\n");
+        spoofers::reap::run(protected_func);
+        printf("-----------------------------------------------------\n");
     }
 }
 

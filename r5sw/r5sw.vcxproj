@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="protected.cpp" />
     <ClCompile Include="r5sw.cpp" />
+    <ClCompile Include="spoofers\reap\reap.cpp" />
     <ClCompile Include="tools.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +144,7 @@
     <ClInclude Include="spoofers\beakers\beakers.h" />
     <ClInclude Include="spoofers\namazso\namazso.h" />
     <ClInclude Include="inc\tools.h" />
+    <ClInclude Include="spoofers\reap\reap.h" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="spoofers\beakers\beakers.asm" />

@@ -66,6 +66,7 @@ bool tools::is_code_within_legitimate_memory_region(DWORD_PTR rip)
         "r5sw.exe",
         "ntdll.dll",
         "kernel32.dll",
+        "user32.dll", // for compatibility with ReaP's return address spoofer example. 
     };
 
     for (const auto& mod : vec_modules)
