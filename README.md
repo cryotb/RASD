@@ -37,6 +37,7 @@ They seem to use this generic algorithm for detecting a range of gadgets. Furthe
 It pretty much detects certain variations of gadgets commonly used when doing anything with return address spoofing, i have included 2 open-source projects to demonstrate the detection:
 1. https://www.unknowncheats.me/forum/anti-cheat-bypass/268039-x64-return-address-spoofing-source-explanation.html
 2. https://www.unknowncheats.me/forum/anti-cheat-bypass/512002-x64-return-address-spoofing.html
+3. https://github.com/Peribunt/Exception-Ret-Spoofing/
 
 All credits for these go to the corresponding authors. They are just being shipped for demonstration purposes.
 
