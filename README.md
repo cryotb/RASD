@@ -2,7 +2,7 @@
 Parts of this project have been reverse engineered and reconstructed from R5AC, an in-house anticheat solution currently deployed in APEX LEGENDS. I have simplified some of their checks due to time constrains, but behavior should be identical. I have written a few rather small tests to confirm this, which execute a function monitored by a replicated R5AC stackwalk, which intentionally do following things:
 - call into monitored function from legitimate place (e.g from within the main executable)
 - call into monitored function from code residing in a manually allocated RWX page.
-- call into monitored function with 3 open-source return address spoofers. (gadgets used: jmp, add rsp; ret)
+- call into monitored function with 3 open-source return address spoofers. (gadgets used: jmp, add rsp; ret, int3)
 
 # Sample Output
 Make sure to compile in x64 Release!
