@@ -90,8 +90,8 @@ spoofers::reap::VectoredHandler(
 			//
 			ContextRecord->Xmm15.Low = *(ULONG64*)(ContextRecord->Rsp);
 
-			CONSOLE_LOG("Old return address: %p", ContextRecord->Xmm15.High);
-			CONSOLE_LOG("New return address: %p", ContextRecord->Xmm15.Low);
+			CONSOLE_LOG("Old return address: %llx", ContextRecord->Xmm15.High);
+			CONSOLE_LOG("New return address: %llx", ContextRecord->Xmm15.Low);
 
 			return EXCEPTION_CONTINUE_EXECUTION;
 		}
