@@ -66,3 +66,52 @@ Currently, they use following logic for what i assume, is for detecting gadgets 
             }
 ```
 They seem to use this generic algorithm for detecting a range of gadgets. Further analysis is to be done on it.
+
+# How they use it apex
+```
+// this code can be inlined and also be in their own sub 
+      if ( v14 == -1 )
+        {
+          pCurrentStackTraceRIP = pStackTrace;
+          nStackTraceIndex = 0;
+          do
+          {
+            retaddr = *(_QWORD *)pCurrentStackTraceRIP;
+ 
+            if ( !*(_QWORD *)pCurrentStackTraceRIP || (index = 0, r5::ac::max_whitelisted_sections <= 0) )
+            {
+ 
+on_detected_violation2:
+              r5::ac::push_violation((__int64)aCsCinputInputC, 1);
+              goto LABEL_17;
+            }
+ 
+            whitelisted_sections = (unsigned __int64 *)r5::ac::whitelisted_sections;
+ 
+            // v17 looks like a RETURN ADDRESS
+            // - at index zero, pcurr[0] is start of text section and pcurr[1] is end of .text section
+            while ( retaddr < *whitelisted_sections || retaddr > whitelisted_sections[1] )
+            {
+              ++index;
+              whitelisted_sections += 2;
+              if ( index >= r5::ac::max_whitelisted_sections )
+                goto on_detected_violation2;
+            }
+            if ( *(_BYTE *)(retaddr - 5) != 0xE8 )
+            {
+              some_idx = 2i64;
+              while ( *(_BYTE *)(retaddr - some_idx) != 0xFF
+                   || (((*(_BYTE *)(retaddr - some_idx + 1) & 0x38) - 16) & 0xF7) != 0 )
+              {
+                if ( ++some_idx > 6 )
+                  goto on_detected_violation2;
+              }
+            }
+            ++nStackTraceIndex;
+            pCurrentStackTraceRIP = (__int128 *)((char *)pCurrentStackTraceRIP + 8);
+          }
+          while ( nStackTraceIndex < numStackTraceRecords2 );
+        }
+      }
+    }
+```
