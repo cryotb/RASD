@@ -67,7 +67,7 @@ Currently, they use following logic for what i assume, is for detecting gadgets 
 ```
 They seem to use this generic algorithm for detecting a range of gadgets. Further analysis is to be done on it.
 
-# How they use it apex
+# Practical example (usage in Apex Legends)
 ```
 // this code can be inlined and also be in their own sub 
       if ( v14 == -1 )
