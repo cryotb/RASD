@@ -8,23 +8,33 @@ Parts of this project have been reverse engineered and reconstructed from R5AC, 
 Make sure to compile in x64 Release!
 ```
 ------( trying to call from process itself... )------
-<<EXTRA>> [INFO] CALLED BY 'r5sw.exe'+0xced5
+<<EXTRA>> [INFO] CALLED BY 'r5sw.exe'+0xae65
 -----------------------------------------------------
 ------( trying to call from RWX page... )------
 <<EXTRA>> [FLAG//////UNBACKED CODE EXECUTION(PRIMARY)] caller is originated within non-module memory.
-<<EXTRA>> [INFO] CALLED BY 'UNK_f0d97f790'
-[FLAG//////UNBACKED CODE EXECUTION(SECONDARY)] suspicious record at 0 (0000017ACA4D0017)
+<<EXTRA>> [INFO] CALLED BY 'UNK_be1d4ff540'
+[FLAG//////UNBACKED CODE EXECUTION(SECONDARY)] suspicious record at 0 (0000022AB3B30017)
 -----------------------------------------------------
 ------( trying to call with spoof (namazso): )------
 <<EXTRA>> [INFO] CALLED BY 'r5sw.exe'+0x1000
-[FLAG//////RETADDR SPOOFER] suspicious record at 0 (00007FF642DC1000)
+[FLAG//////RETADDR SPOOFER] suspicious record at 0 (00007FF703471000)
 -----------------------------------------------------
 ------( trying to call with spoof (beakers): )------
-<<EXTRA>> [INFO] CALLED BY 'kernel32.dll'+0x66cfa
-[FLAG//////RETADDR SPOOFER] suspicious record at 0 (00007FF8DD396CFA)
-[FLAG//////RETADDR SPOOFER] suspicious record at 2 (00007FF8DD345FB6)
-[FLAG//////RETADDR SPOOFER] suspicious record at 3 (00007FF642DCD1AB)
+<<EXTRA>> [INFO] CALLED BY 'kernel32.dll'+0x18f24
+[FLAG//////RETADDR SPOOFER] suspicious record at 0 (00007FFE230B8F24)
+[FLAG//////RETADDR SPOOFER] suspicious record at 1 (00007FFE230D5B34)
+[FLAG//////RETADDR SPOOFER] suspicious record at 2 (00007FFE230B5FB6)
+[FLAG//////RETADDR SPOOFER] suspicious record at 3 (00007FFE230FEC99)
+[FLAG//////RETADDR SPOOFER] suspicious record at 4 (00007FF70347D43B)
 -----------------------------------------------------
+------( trying to call with spoof (ReaP): )------
+[!] spoofers::reap::VectoredHandler: Old return address: 7ff70347ba2f
+[!] spoofers::reap::VectoredHandler: New return address: 7ffe2378248f
+<<EXTRA>> [INFO] CALLED BY 'user32.dll'+0x7248f
+[FLAG//////RETADDR SPOOFER] suspicious record at 0 (00007FFE2378248F)
+[!] spoofers::reap::VectoredHandler: Returning back to 00007FF70347BA2F...
+-----------------------------------------------------
+
 ```
 
 # How does it work?
