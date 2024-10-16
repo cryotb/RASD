@@ -27,10 +27,10 @@ void protected_func()
     else
     {
         caller_fmt = "<<EXTRA>> [INFO] CALLED BY '%s'\n";
-        sprintf_s(caller_name, "UNK_%llx", mod_caller->m_base);
+        sprintf_s(caller_name, "UNK_%llx", retaddr);
     }
 
-    printf(caller_fmt, caller_name, retaddr - mod_caller->m_base);
+    printf(caller_fmt, caller_name, retaddr - (mod_caller != std::nullopt ? mod_caller->m_base : 0ull));
 
     //
     // <===============================================================================>

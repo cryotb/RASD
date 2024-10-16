@@ -107,7 +107,7 @@ spoofers::reap::VectoredHandler(
 		//
 		ContextRecord->Rip = ContextRecord->Xmm15.High;
 
-		CONSOLE_LOG("Returning back to %p...", ContextRecord->Xmm15.High);
+		CONSOLE_LOG("Returning back to %llx...", ContextRecord->Xmm15.High);
 
 		return EXCEPTION_CONTINUE_EXECUTION;
 	}
