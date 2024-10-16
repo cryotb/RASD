@@ -34,7 +34,6 @@ Make sure to compile in x64 Release!
 [FLAG//////RETADDR SPOOFER] suspicious record at 0 (00007FFE2378248F)
 [!] spoofers::reap::VectoredHandler: Returning back to 00007FF70347BA2F...
 -----------------------------------------------------
-
 ```
 
 # How does it work?
