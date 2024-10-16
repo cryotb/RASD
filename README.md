@@ -2,7 +2,7 @@
 Parts of this project have been reverse engineered and reconstructed from R5AC, an in-house anticheat solution currently deployed in APEX LEGENDS. I have simplified some of their checks due to time constrains, but behavior should be identical. I have written a few rather small tests to confirm this, which execute a function monitored by a replicated R5AC stackwalk, which intentionally do following things:
 - call into monitored function from legitimate place (e.g from within the main executable)
 - call into monitored function from code residing in a manually allocated RWX page.
-- call into monitored function with 2 open-source return address spoofers. (gadgets used: jmp, add rsp; ret)
+- call into monitored function with 3 open-source return address spoofers. (gadgets used: jmp, add rsp; ret, int3)
 
 # Sample Output
 Make sure to compile in x64 Release!
@@ -36,7 +36,7 @@ If your cheat generates a CALL instruction on anything that later on may land in
 You should always keep in mind that it's not hard for an anticheat to detect an anomaly here, if you add the fact that all of this comes from a module that isn't even in LDR nor signed/in a whitelist, then you definitely know something's up.
 
 # Which gadgets does it detect?
-It pretty much detects certain variations of gadgets commonly used when doing anything with return address spoofing, i have included 2 open-source projects to demonstrate the detection:
+It pretty much detects certain variations of gadgets commonly used when doing anything with return address spoofing, i have included a couple of open-source projects to demonstrate the detection:
 1. https://www.unknowncheats.me/forum/anti-cheat-bypass/268039-x64-return-address-spoofing-source-explanation.html
 2. https://www.unknowncheats.me/forum/anti-cheat-bypass/512002-x64-return-address-spoofing.html
 3. https://github.com/Peribunt/Exception-Ret-Spoofing/
@@ -66,3 +66,52 @@ Currently, they use following logic for what i assume, is for detecting gadgets 
             }
 ```
 They seem to use this generic algorithm for detecting a range of gadgets. Further analysis is to be done on it.
+
+# Practical example (usage in Apex Legends)
+```
+// this code can be inlined and also be in their own sub 
+      if ( v14 == -1 )
+        {
+          pCurrentStackTraceRIP = pStackTrace;
+          nStackTraceIndex = 0;
+          do
+          {
+            retaddr = *(_QWORD *)pCurrentStackTraceRIP;
+ 
+            if ( !*(_QWORD *)pCurrentStackTraceRIP || (index = 0, r5::ac::max_whitelisted_sections <= 0) )
+            {
+ 
+on_detected_violation2:
+              r5::ac::push_violation((__int64)aCsCinputInputC, 1);
+              goto LABEL_17;
+            }
+ 
+            whitelisted_sections = (unsigned __int64 *)r5::ac::whitelisted_sections;
+ 
+            // v17 looks like a RETURN ADDRESS
+            // - at index zero, pcurr[0] is start of text section and pcurr[1] is end of .text section
+            while ( retaddr < *whitelisted_sections || retaddr > whitelisted_sections[1] )
+            {
+              ++index;
+              whitelisted_sections += 2;
+              if ( index >= r5::ac::max_whitelisted_sections )
+                goto on_detected_violation2;
+            }
+            if ( *(_BYTE *)(retaddr - 5) != 0xE8 )
+            {
+              some_idx = 2i64;
+              while ( *(_BYTE *)(retaddr - some_idx) != 0xFF
+                   || (((*(_BYTE *)(retaddr - some_idx + 1) & 0x38) - 16) & 0xF7) != 0 )
+              {
+                if ( ++some_idx > 6 )
+                  goto on_detected_violation2;
+              }
+            }
+            ++nStackTraceIndex;
+            pCurrentStackTraceRIP = (__int128 *)((char *)pCurrentStackTraceRIP + 8);
+          }
+          while ( nStackTraceIndex < numStackTraceRecords2 );
+        }
+      }
+    }
+```
